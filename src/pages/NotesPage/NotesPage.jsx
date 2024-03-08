@@ -19,10 +19,6 @@ const NotesPage = ({ notes, onAddNote, onDeleteNote }) => {
       return;
     }
 
-    if (body > 10) {
-      console.log('Yang bener');
-    }
-
     onAddNote(title, body);
     setShowAddForm(false);
   };
