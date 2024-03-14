@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { FaSearch, FaPlus } from 'react-icons/fa';
 import AddForm from './AddForm';
 import NotesCard from './NotesCard';
+import EditForm from './EditForm';
+import HTMLReactParser from 'html-react-parser';
 
-const NotesPage = ({ notes, onAddNote, onDeleteNote }) => {
+const NotesPage = ({ notes, onAddNote, onDeleteNote, onEditNote }) => {
   const [showAddForm, setShowAddForm] = useState(false);
+  const [selectedEditNote, setSelectedEditNote] = useState(null);
+  const [selectedNote, setSelectedNote] = useState(null);
 
   const handleShowAddForm = () => {
     setShowAddForm(true);
@@ -12,6 +16,24 @@ const NotesPage = ({ notes, onAddNote, onDeleteNote }) => {
 
   const handleCloseAddForm = () => {
     setShowAddForm(false);
+  };
+
+  const handleShowEditForm = (id) => {
+    const showEditFormById = notes.find((note) => note.id === id);
+    setSelectedEditNote(showEditFormById);
+  };
+
+  const handleCloseEditForm = () => {
+    setSelectedEditNote(null);
+  };
+
+  const onViewNote = (id) => {
+    const viewById = notes.find((note) => note.id === id);
+    setSelectedNote(viewById);
+  };
+
+  const handleCloseNote = () => {
+    setSelectedNote(null);
   };
 
   const handleAddNote = (title, body) => {
@@ -46,11 +68,23 @@ const NotesPage = ({ notes, onAddNote, onDeleteNote }) => {
       </div>
 
       {showAddForm && <AddForm handleAddNote={handleAddNote} handleCloseAddForm={handleCloseAddForm} />}
-      <div id="note-card-container" className="relative w-full my-[20px] grid grid-cols-3 gap-3">
+      {selectedEditNote && <EditForm note={selectedEditNote} handleCloseEditForm={handleCloseEditForm} onEditNote={onEditNote} />}
+
+      <div id="note-card-container" className="relative w-full my-[20px] grid grid-cols-3 gap-3 max-md:grid-cols-2 max-sm:grid-cols-1">
         {notes.map((note) => {
-          return <NotesCard key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} onDeleteNote={onDeleteNote} />;
+          return <NotesCard key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} onDeleteNote={onDeleteNote} onViewNote={onViewNote} onShowEditForm={handleShowEditForm} />;
         })}
       </div>
+
+      {selectedNote && (
+        <div id="note-view" className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] h-auto p-[20px] bg-white border-[2px] border-black rounded-md">
+          <h1 className="font-bold mb-2">{selectedNote.title}</h1>
+          <p className="ql-editor text-[12px]">{HTMLReactParser(selectedNote.body)}</p>
+          <div className="" onClick={handleCloseNote}>
+            Close
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import modulesEditor from '../../editor/moduleQuill';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const AddForm = ({ handleAddNote, handleCloseAddForm }) => {
   const [titleValue, setTitleValue] = useState('');
@@ -16,24 +19,17 @@ const AddForm = ({ handleAddNote, handleCloseAddForm }) => {
         />
       </div>
 
-      <div id="body" className="flex flex-col mb-6">
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-          className="w-full min-h-[340px] p-3 bg-gray-100 text-[12px] outline-none rounded-md border-[2px] border-slate-300 resize-none"
-          placeholder="Enter your note..."
-          value={bodyValue}
-          onChange={(e) => setBodyValue(e.target.value)}
-        ></textarea>
+      <div id="body" className=" flex flex-col mb-16">
+        <div className="ql-container w-full bg-gray-100 h-[342px] ">
+          <ReactQuill className=" w-full h-[300px] border border-slate-300" theme="snow" value={bodyValue} onChange={(value) => setBodyValue(value)} modules={modulesEditor} placeholder="Enter your description note..." />
+        </div>
       </div>
 
       <div id="form-button" className="flex justify-between items-center">
         <div className="w-[120px] h-[45px] border-[1px] border-yellow-200 rounded-md text-center leading-[45px] font-semibold text-[13px] cursor-pointer" onClick={handleCloseAddForm}>
           Cancel
         </div>
-        <div className="w-[120px] h-[45px] bg-yellow-200 rounded-md text-center leading-[45px] font-semibold text-[13px] cursor-pointer " onClick={() => handleAddNote(titleValue, bodyValue)}>
+        <div className="w-[120px] h-[45px] bg-yellow-200 rounded-md text-center leading-[45px] font-semibold text-[13px] cursor-pointer" onClick={() => handleAddNote(titleValue, bodyValue)}>
           Create
         </div>
       </div>
