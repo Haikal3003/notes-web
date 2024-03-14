@@ -31,13 +31,18 @@ function App() {
     setNotes(deletedNoteById);
   };
 
+  const onEditNote = (id, newTitle, newBody) => {
+    const editNoteById = notes.map((note) => (note.id === id ? { ...note, title: newTitle, body: newBody } : note));
+    setNotes(editNoteById);
+  };
+
   return (
     <Router>
       <Container>
         <SideBar />
         <PagesContainer>
           <Routes>
-            <Route path="/" exact element={<NotesPage onAddNote={onAddNote} notes={notes} onDeleteNote={onDeleteNote} />} />
+            <Route path="/" exact element={<NotesPage onAddNote={onAddNote} notes={notes} onDeleteNote={onDeleteNote} onEditNote={onEditNote} />} />
           </Routes>
         </PagesContainer>
       </Container>
