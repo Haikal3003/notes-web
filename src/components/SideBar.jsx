@@ -23,8 +23,8 @@ const SideBar = () => {
       </div>
 
       <ul id="nav-list">
-        {links.map((link) => (
-          <li className="mb-6">
+        {links.map((link, index) => (
+          <li key={index} className="mb-6">
             <Link to={link.to} className="relative flex justify-center items-center  w-[40px] h-[40px] border-[2px] border-solid border-black rounded-[6px] hover:bg-yellow-200 hover:scale-105">
               {link.icon}
             </Link>
