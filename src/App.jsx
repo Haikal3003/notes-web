@@ -8,10 +8,12 @@ import { v4 as uuid4 } from 'uuid';
 
 function App() {
   const [notes, setNotes] = useState(JSON.parse(localStorage.getItem('notes')) || []);
+  const [noteTrash, setNoteTrash] = useState(JSON.parse(localStorage.getItem('note-trash')) || []);
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes));
-  }, [notes]);
+    localStorage.setItem('note-trash', JSON.stringify(noteTrash));
+  }, [notes, noteTrash]);
 
   const onAddNote = (titleValue, bodyValue) => {
     const newNote = {
@@ -27,9 +29,13 @@ function App() {
   };
 
   const onDeleteNote = (id) => {
+    const deletedNote = notes.find((note) => note.id === id);
     const deletedNoteById = notes.filter((note) => note.id !== id);
+
     setNotes(deletedNoteById);
+    setNoteTrash([...noteTrash, deletedNote]);
   };
+  console.log(noteTrash);
 
   const onEditNote = (id, newTitle, newBody) => {
     const editNoteById = notes.map((note) => (note.id === id ? { ...note, title: newTitle, body: newBody } : note));
