@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import modulesEditor from '../../editor/moduleQuill';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 
 const EditForm = ({ note, handleCloseEditForm, onEditNote }) => {
   const [newTitle, setNewTitle] = useState(note.title);
@@ -21,7 +20,7 @@ const EditForm = ({ note, handleCloseEditForm, onEditNote }) => {
       <div id="body" className="flex flex-col mb-6">
         <div className="ql-container w-full bg-gray-100 h-[342px] ">
           <ReactQuill className=" w-full h-[300px] border border-slate-300" theme="snow" value={newBody} onChange={(value) => setNewBody(value)} modules={modulesEditor} placeholder="Enter your description note..." />
-        </div>{' '}
+        </div>
       </div>
 
       <div id="form-button" className="flex justify-between items-center">

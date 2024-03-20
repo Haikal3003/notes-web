@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiDotsVertical, BiPin, BiXCircle, BiArchive, BiTrash, BiPencil } from 'react-icons/bi';
 import { motion } from 'framer-motion';
 import HTMLReactParser from 'html-react-parser';
 
-const NotesCard = ({ id, title, body, date, onDeleteNote, onViewNote, onShowEditForm }) => {
+const NotesCard = ({ id, title, body, date, onDeleteNote, onViewNote, onShowEditForm, selectedNote }) => {
   const [showNoteOption, setShowNoteOption] = useState(false);
 
   const handleShowNoteOption = () => {
@@ -19,11 +19,21 @@ const NotesCard = ({ id, title, body, date, onDeleteNote, onViewNote, onShowEdit
     onDeleteNote(id);
   };
 
+  const truncatedText = (text) => {
+    return text.length >= 25 ? text.substring(0, 25) + '...' : text;
+  };
+
+  useEffect(() => {
+    if (selectedNote) {
+      setShowNoteOption(false);
+    }
+  });
+
   return (
     <motion.div id="note-card" className="relative w-full max-w-full h-auto p-[20px] bg-white border-[2px] border-black rounded-md" initial={{ width: 0, opacity: 0 }} animate={{ width: '100%', opacity: 1 }}>
       <div className="flex justify-between items-center">
-        <h1 id="note-title" className="text-[15px] font-semibold ">
-          {title}
+        <h1 id="note-title" className="text-[15px] font-semibold w-full  overflow-x-hidden mr-4">
+          {truncatedText(title)}
         </h1>
 
         <div className="flex items-center gap-1">
@@ -36,7 +46,7 @@ const NotesCard = ({ id, title, body, date, onDeleteNote, onViewNote, onShowEdit
         </div>
       </div>
 
-      <div id="note-body" className="w-full h-[150px] overflow-hidden my-2">
+      <div id="note-body" className="w-full h-[150px] overflow-hidden mt-2 my-4">
         <div className="ql-editor w-full p-0 text-[12px]">{HTMLReactParser(body)}</div>
       </div>
 

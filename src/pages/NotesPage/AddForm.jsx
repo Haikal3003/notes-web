@@ -21,7 +21,7 @@ const AddForm = ({ handleAddNote, handleCloseAddForm }) => {
 
       <div id="body" className=" flex flex-col mb-16">
         <div className="ql-container w-full bg-gray-100 h-[342px] ">
-          <ReactQuill className=" w-full h-[300px] border border-slate-300" theme="snow" value={bodyValue} onChange={(value) => setBodyValue(value)} modules={modulesEditor} placeholder="Enter your description note..." />
+          <ReactQuill className="w-full h-[300px] border border-slate-300 outline-none" theme="snow" value={bodyValue} onChange={(value) => setBodyValue(value)} modules={modulesEditor} placeholder="Enter your description note..." />
         </div>
       </div>
 
