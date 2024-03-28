@@ -12,6 +12,12 @@ The archive feature allows you to store notes that you want to keep but don't ne
 ### Trash Note
 Notes that are no longer needed can be moved to the trash. This feature helps you declutter your notes by temporarily storing them in the trash bin. You can restore notes from the trash if needed or permanently delete them to free up space.
 
+## Technologies Used
+- HTML
+- CSS
+- Javascript
+- React js
+
 ## Usage
 
 To get started with the Notes Web Application:
@@ -36,8 +42,10 @@ npm i .
 npm run dev
 ```
 
-## Technologies Used
-- **Frontend**: HTML, CSS, JavaScript, React.js
+### Copyright (c) 2024, Muhammad Fikry Haikal 
+
+
+
 
 
 
