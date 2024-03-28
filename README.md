@@ -16,10 +16,20 @@ Notes that are no longer needed can be moved to the trash. This feature helps yo
 
 To get started with the Notes Web Application:
 
-#### 1. Clone this repository to your local machine.
+##### 1. Clone this repository to your local machine.
 ```bash
 git clone https://github.com/VioletKawaiiiii/notes-web.git
 ```
+
+##### 2. Navigate to the project directory.
+```bash 
+cd notes-web-app
+```
+
+
+
+
+
 
 
 
