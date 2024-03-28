@@ -42,7 +42,7 @@ npm i .
 npm run dev
 ```
 
-This project is licensed under the [MIT License](LICENSE).
+© Fikryyye 2024
 
 
 
