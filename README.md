@@ -36,6 +36,10 @@ npm i .
 npm run dev
 ```
 
+## Technologies Used
+- **Frontend**: HTML, CSS, JavaScript, React.js
+
+
 
 
 
