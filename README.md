@@ -42,7 +42,7 @@ npm i .
 npm run dev
 ```
 
-© Fikryyye 2024
+### © Created by Fikryyye 2024. All Right Reserved.
 
 
 
