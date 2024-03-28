@@ -23,8 +23,21 @@ git clone https://github.com/VioletKawaiiiii/notes-web.git
 
 ##### 2. Navigate to the project directory.
 ```bash 
-cd notes-web-app
+cd notes-web
 ```
+
+##### 3. Install dependencies.
+```bash
+npm install .
+```
+
+##### 4. Start the application.
+```bash
+npm run dev
+```
+
+
+
 
 
 
