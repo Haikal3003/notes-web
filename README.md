@@ -28,7 +28,7 @@ cd notes-web
 
 ##### 3. Install dependencies.
 ```bash
-npm install .
+npm i .
 ```
 
 ##### 4. Start the application.
