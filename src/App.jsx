@@ -4,6 +4,7 @@ import Container from './components/Container';
 import SideBar from './components/SideBar';
 import PagesContainer from './components/PagesContainer';
 import NotesPage from './pages/NotesPage/NotesPage';
+import TrashPage from './pages/TrashPage/TrashPage';
 import { v4 as uuid4 } from 'uuid';
 
 function App() {
@@ -30,12 +31,15 @@ function App() {
 
   const onDeleteNote = (id) => {
     const deletedNote = notes.find((note) => note.id === id);
-    const deletedNoteById = notes.filter((note) => note.id !== id);
 
-    setNotes(deletedNoteById);
-    setNoteTrash([...noteTrash, deletedNote]);
+    if (deletedNote) {
+      const updatedNote = notes.filter((note) => note.id !== id);
+      deletedNote.isTrash = true;
+
+      setNotes(updatedNote);
+      setNoteTrash([...noteTrash, deletedNote]);
+    }
   };
-  console.log(noteTrash);
 
   const onEditNote = (id, newTitle, newBody) => {
     const editNoteById = notes.map((note) => (note.id === id ? { ...note, title: newTitle, body: newBody } : note));
@@ -49,6 +53,7 @@ function App() {
         <PagesContainer>
           <Routes>
             <Route path="/" exact element={<NotesPage onAddNote={onAddNote} notes={notes} onDeleteNote={onDeleteNote} onEditNote={onEditNote} />} />
+            <Route path="/trash" element={<TrashPage notes={notes} noteTrash={noteTrash} setNotes={setNotes} setNoteTrash={setNoteTrash} />} />
           </Routes>
         </PagesContainer>
       </Container>
