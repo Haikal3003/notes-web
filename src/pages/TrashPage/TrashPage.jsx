@@ -19,9 +19,17 @@ const TrashPage = ({ notes, noteTrash, setNotes, setNoteTrash }) => {
   };
 
   const onRestoreNote = (id) => {
-    const findNoteById = noteTrash.find((note) => note.id === id);
-    console.log(findNoteById);
+    const restoredNote = noteTrash.find((note) => note.id === id);
+
+    if (restoredNote) {
+      const updatedNote = noteTrash.filter((note) => note.id !== id);
+      restoredNote.isTrash = false;
+
+      setNoteTrash(updatedNote);
+      setNotes([...notes, restoredNote]);
+    }
   };
+
   return (
     <div className="relative py-3 w-full">
       <h1 className="Heading text-[35px] font-bold">Trash Note</h1>
