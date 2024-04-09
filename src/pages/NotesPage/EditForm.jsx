@@ -12,7 +12,10 @@ const EditForm = ({ note, handleCloseEditForm, onEditNote }) => {
   };
 
   return (
-    <form id="edit-form" className="fixed w-full max-w-[600px] h-[600px] bottom-[10px] right-[10px] bg-white rounded-md px-[20px] py-[45px] shadow-2xl z-50">
+    <form id="edit-form" className="fixed w-full max-w-[600px] h-auto top-[5px] right-[10px] bg-white rounded-md px-[20px] py-[45px] shadow-2xl z-50 max-sm:max-w-full max-sm:h-full max-sm:bottom-0 max-sm:right-0 max-sm:py-[100px]">
+      <h1 id="heading" className="text-[20px] font-bold mb-5">
+        Edit note...
+      </h1>
       <div id="title" className="mb-5">
         <input type="text" className="w-full p-3 text-[12px] outline-none bg-gray-100 rounded-md border-[2px] border-slate-300 font-bold" placeholder="Enter title note ..." value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
       </div>
