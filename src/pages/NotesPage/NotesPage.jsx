@@ -5,7 +5,7 @@ import NotesCard from './NotesCard';
 import EditForm from './EditForm';
 import HTMLReactParser from 'html-react-parser';
 
-const NotesPage = ({ notes, onAddNote, onDeleteNote, onEditNote }) => {
+const NotesPage = ({ notes, onAddNote, onDeleteNote, onEditNote, onArchiveNote }) => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [selectedEditNote, setSelectedEditNote] = useState(null);
   const [selectedNote, setSelectedNote] = useState(null);
@@ -58,8 +58,8 @@ const NotesPage = ({ notes, onAddNote, onDeleteNote, onEditNote }) => {
 
   return (
     <div className="relative">
-      <div id="header" className="flex justify-between items-center py-3 border-b-[1px] border-black">
-        <div className="relative flex justify-between items-center w-full max-w-[350px]  h-[45px]  px-4 border-[2px] border-solid border-black rounded-full">
+      <div id="header" className="flex justify-between items-center py-3 border-b-[1px] border-black max-sm:flex-wrap max-sm:w-full gap-2">
+        <div className="relative flex justify-between items-center w-full max-w-[350px] max-sm:max-w-full  h-[45px]  px-4 border-[2px] border-solid border-black rounded-md">
           <input
             id="search-input"
             type="text"
@@ -71,15 +71,19 @@ const NotesPage = ({ notes, onAddNote, onDeleteNote, onEditNote }) => {
           <FaSearch className="text-[14px] cursor-pointer hover:text-yellow-300" onClick={handleSearch} />
         </div>
 
-        <div className="flex items-center">
-          <div>
-            <select name="" id="" className="outline-none w-[120px] h-[45px] text-center text-[12px] border-[2px] border-solid border-black rounded-md cursor-pointer mr-4">
+        <div className="relative w-full  flex items-center justify-end max-sm:gap-3 max-sm:justify-between">
+          <div className="max-sm:w-full">
+            <select name="" id="" className="outline-none w-[120px] h-[45px] text-center text-[12px] border-[2px] border-solid border-black rounded-md cursor-pointer mr-4 max-sm:w-full">
               <option value="latest">Latest</option>
               <option value="1 week">1 Week</option>
             </select>
           </div>
 
-          <div id="add-note-button" className="flex justify-center items-center text-[13px] w-[120px] h-[45px] bg-yellow-200 border-[2px] border-solid border-black rounded-md cursor-pointer hover:scale-105" onClick={handleShowAddForm}>
+          <div
+            id="add-note-button"
+            className="flex justify-center items-center text-[13px] w-[120px] h-[45px] bg-yellow-200 border-[2px] border-solid border-black rounded-md cursor-pointer hover:scale-105 max-sm:w-full"
+            onClick={handleShowAddForm}
+          >
             <FaPlus />
           </div>
         </div>
@@ -93,7 +97,18 @@ const NotesPage = ({ notes, onAddNote, onDeleteNote, onEditNote }) => {
       ) : (
         <div id="note-card-container" className="relative w-full my-[20px] grid grid-cols-3 gap-3 max-md:grid-cols-2 max-sm:grid-cols-1">
           {(searchResult.length > 0 ? searchResult : notes).map((note) => (
-            <NotesCard key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} onDeleteNote={onDeleteNote} onViewNote={onViewNote} onShowEditForm={handleShowEditForm} selectedNote={selectedNote} />
+            <NotesCard
+              key={note.id}
+              id={note.id}
+              title={note.title}
+              body={note.body}
+              date={note.date}
+              onDeleteNote={onDeleteNote}
+              onViewNote={onViewNote}
+              onShowEditForm={handleShowEditForm}
+              selectedNote={selectedNote}
+              onArchiveNote={onArchiveNote}
+            />
           ))}
         </div>
       )}
