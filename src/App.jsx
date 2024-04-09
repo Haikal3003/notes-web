@@ -9,6 +9,21 @@ import ArchivePage from './pages/ArchivePage/ArchivePage';
 import toast, { Toaster } from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 
+export const showToast = (message, color) => {
+  toast.success(message, {
+    style: {
+      border: `2px solid ${color}`,
+      padding: '13px',
+      fontSize: '13px',
+      color: color,
+    },
+    iconTheme: {
+      primary: color,
+      secondary: '#FFFAEE',
+    },
+  });
+};
+
 function App() {
   const [notes, setNotes] = useState(() => JSON.parse(localStorage.getItem('notes')) || []);
   const [noteTrash, setNoteTrash] = useState(() => JSON.parse(localStorage.getItem('note-trash')) || []);
@@ -19,20 +34,6 @@ function App() {
     localStorage.setItem('note-trash', JSON.stringify(noteTrash));
     localStorage.setItem('note-archive', JSON.stringify(noteArchive));
   }, [notes, noteTrash, noteArchive]);
-
-  const showToast = (message, color) => {
-    toast.success(message, {
-      style: {
-        border: `2px solid ${color}`,
-        padding: '13px',
-        color: color,
-      },
-      iconTheme: {
-        primary: color,
-        secondary: '#FFFAEE',
-      },
-    });
-  };
 
   const addNote = (title, body) => {
     const newNote = {
