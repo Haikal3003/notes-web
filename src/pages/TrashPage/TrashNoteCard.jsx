@@ -4,7 +4,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import { FaArrowRotateRight } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
 
-const TrashNoteCard = ({ notes, id, title, body, date, handleShowDeletePopUp, onRestoreNote }) => {
+const TrashNoteCard = ({ id, title, body, date, handleShowDeletePopUp, onRestoreNote }) => {
   const truncatedText = (text) => {
     return text.length > 25 ? text.substring(0, 25) + '...' : text;
   };
