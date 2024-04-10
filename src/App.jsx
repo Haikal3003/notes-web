@@ -45,7 +45,7 @@ function App() {
       isTrash: false,
     };
 
-    showToast('Note added successfully', '#76885B');
+    showToast('Note added', '#000');
     setNotes((prevNotes) => [...prevNotes, newNote]);
   };
 
@@ -56,7 +56,7 @@ function App() {
       const updatedNotes = notes.filter((note) => note.id !== id);
       deletedNote.isTrash = true;
 
-      showToast('Note deleted successfully', '#E72929');
+      showToast('Note deleted (move to trash)', '#E72929');
       setNotes(updatedNotes);
       setNoteTrash((prevTrash) => [...prevTrash, deletedNote]);
     }
@@ -65,7 +65,7 @@ function App() {
   const editNote = (id, newTitle, newBody) => {
     const editedNotes = notes.map((note) => (note.id === id ? { ...note, title: newTitle, body: newBody } : note));
 
-    showToast('Note edited successfully', '#FFC94A');
+    showToast('Note edited ', '#FFC94A');
     setNotes(editedNotes);
   };
 
@@ -76,7 +76,7 @@ function App() {
       const updatedNotes = notes.filter((note) => note.id !== id);
       archivedNote.isArchive = true;
 
-      showToast('Note archived successfully', '#713200');
+      showToast('Note archived ', '#713200');
       setNotes(updatedNotes);
       setNoteArchive((prevArchive) => [...prevArchive, archivedNote]);
     }
