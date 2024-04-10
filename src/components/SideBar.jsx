@@ -24,14 +24,14 @@ const SideBar = () => {
         <h1 className="text-[16px] font-bold">N.</h1>
       </div>
 
-      <ul id="nav-list" className={isMenuOpen ? 'max-sm:fixed max-sm:w-full max-sm:h-full max-sm:left-0 max-sm:top-0 max-sm:bg-white z-[1000] max-sm:px-[20px] max-sm:py-[150px]' : 'max-sm:hidden'}>
+      <ul id="nav-list" className={isMenuOpen ? 'max-sm:fixed max-sm:w-full max-sm:h-full max-sm:left-0 max-sm:top-0 max-sm:bg-white z-[1000] max-sm:px-[20px] max-sm:py-[150px] ' : 'max-sm:hidden'}>
         {links.map((link, index) => (
           <li key={index} className="mb-6 max-sm:mb-2" onClick={() => setIsMenuOpen(false)}>
             <Link
               to={link.to}
               className={
                 isMenuOpen
-                  ? 'relative flex items-center w-full h-[40px] text-[17px] font-bold hover:text-yellow-400  '
+                  ? 'relative flex justify-center items-center w-full h-[40px] text-[17px] font-bold hover:text-yellow-400  '
                   : 'relative flex justify-center items-center  w-[40px] h-[40px] border-[2px] border-solid border-black rounded-[6px] hover:bg-yellow-200 hover:scale-105 '
               }
             >
