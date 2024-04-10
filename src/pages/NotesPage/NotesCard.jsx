@@ -3,10 +3,10 @@ import { BiDotsVertical, BiPin, BiXCircle, BiArchive, BiTrash, BiPencil } from '
 import { motion } from 'framer-motion';
 import HTMLReactParser from 'html-react-parser';
 
+export const truncatedText = (text) => (text.length >= 25 ? `${text.substring(0, 25)}...` : text);
+
 const NotesCard = ({ id, title, body, date, onDeleteNote, onViewNote, onShowEditForm, selectedNote, onArchiveNote }) => {
   const [showNoteOption, setShowNoteOption] = useState(false);
-
-  const truncatedText = (text) => (text.length >= 25 ? `${text.substring(0, 25)}...` : text);
 
   useEffect(() => {
     if (selectedNote) {
