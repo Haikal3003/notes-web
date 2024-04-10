@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import TrashNoteCard from './TrashNoteCard';
-import toast from 'react-hot-toast';
 import { showToast } from '../../App';
 
 const TrashPage = ({ notes, noteTrash, setNotes, setNoteTrash }) => {
@@ -14,7 +13,7 @@ const TrashPage = ({ notes, noteTrash, setNotes, setNoteTrash }) => {
     setNoteTrash(updatedNoteTrash);
     handleCloseDeletePopUp();
 
-    showToast('Note delete permanent successfully!', '#E72929');
+    showToast('Note delete permanently', '#E72929');
   };
 
   const onRestoreNote = (id) => {

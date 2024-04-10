@@ -1,14 +1,10 @@
-import { useState } from 'react';
 import HTMLReactParser from 'html-react-parser';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaArrowRotateRight } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
+import { truncatedText } from '../NotesPage/NotesCard';
 
 const TrashNoteCard = ({ id, title, body, date, handleShowDeletePopUp, onRestoreNote }) => {
-  const truncatedText = (text) => {
-    return text.length > 25 ? text.substring(0, 25) + '...' : text;
-  };
-
   return (
     <>
       <div id="trash-note-card" className="relative w-full max-w-full h-auto p-[20px] bg-white border-[2px] border-black rounded-md" initial={{ width: 0, opacity: 0 }} animate={{ width: '100%', opacity: 1 }}>
