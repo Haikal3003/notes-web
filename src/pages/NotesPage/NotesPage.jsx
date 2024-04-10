@@ -23,6 +23,10 @@ const NotesPage = ({ notes, onAddNote, onDeleteNote, onEditNote, onArchiveNote }
     localStorage.setItem('searchQuery', searchQuery);
   }, [searchQuery]);
 
+  useEffect(() => {
+    setSearchResult([]);
+  }, [notes]);
+
   const handleShowAddForm = () => setShowAddForm(true);
   const handleCloseAddForm = () => setShowAddForm(false);
 
@@ -54,6 +58,12 @@ const NotesPage = ({ notes, onAddNote, onDeleteNote, onEditNote, onArchiveNote }
 
     setSearchQuery('');
     setSearchResult(filteredNotes);
+  };
+
+  const handleDeleteNote = (id) => {
+    onDeleteNote(id);
+    setSearchResult(searchResult.filter((note) => note.id !== id));
+    setSelectedNote(null);
   };
 
   return (
@@ -103,7 +113,7 @@ const NotesPage = ({ notes, onAddNote, onDeleteNote, onEditNote, onArchiveNote }
               title={note.title}
               body={note.body}
               date={note.date}
-              onDeleteNote={onDeleteNote}
+              onDeleteNote={handleDeleteNote}
               onViewNote={onViewNote}
               onShowEditForm={handleShowEditForm}
               selectedNote={selectedNote}
