@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BiDotsVertical, BiPin, BiXCircle, BiArchive, BiTrash, BiPencil } from 'react-icons/bi';
-import { motion } from 'framer-motion';
 import HTMLReactParser from 'html-react-parser';
-
-export const truncatedText = (text) => (text.length >= 25 ? `${text.substring(0, 25)}...` : text);
+import { truncatedText } from '../../utils/truncatedText';
+import { motion } from 'framer-motion';
 
 const NotesCard = ({ id, title, body, date, onDeleteNote, onViewNote, onShowEditForm, selectedNote, onArchiveNote }) => {
   const [showNoteOption, setShowNoteOption] = useState(false);
