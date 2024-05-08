@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import modulesEditor from '../../editor/moduleQuill';
+import modulesEditor from '../../data/moduleQuill';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
