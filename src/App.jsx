@@ -6,34 +6,20 @@ import PagesContainer from './components/PagesContainer';
 import NotesPage from './pages/NotesPage/NotesPage';
 import TrashPage from './pages/TrashPage/TrashPage';
 import ArchivePage from './pages/ArchivePage/ArchivePage';
-import toast, { Toaster } from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
-
-export const showToast = (message, color) => {
-  toast.success(message, {
-    style: {
-      border: `2px solid ${color}`,
-      padding: '13px',
-      fontSize: '13px',
-      color: color,
-    },
-    iconTheme: {
-      primary: color,
-      secondary: '#FFFAEE',
-    },
-  });
-};
+import { Toaster } from 'react-hot-toast';
+import { showToast } from './utils/toast';
 
 function App() {
   const [notes, setNotes] = useState(() => JSON.parse(localStorage.getItem('notes')) || []);
-  const [noteTrash, setNoteTrash] = useState(() => JSON.parse(localStorage.getItem('note-trash')) || []);
-  const [noteArchive, setNoteArchive] = useState(() => JSON.parse(localStorage.getItem('note-archive')) || []);
+  const [notesTrash, setNotesTrash] = useState(() => JSON.parse(localStorage.getItem('notes-trash')) || []);
+  const [notesArchive, setNotesArchive] = useState(() => JSON.parse(localStorage.getItem('notes-archive')) || []);
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes));
-    localStorage.setItem('note-trash', JSON.stringify(noteTrash));
-    localStorage.setItem('note-archive', JSON.stringify(noteArchive));
-  }, [notes, noteTrash, noteArchive]);
+    localStorage.setItem('note-trash', JSON.stringify(notesTrash));
+    localStorage.setItem('note-archive', JSON.stringify(notesArchive));
+  }, [notes, notesTrash, notesArchive]);
 
   const addNote = (title, body) => {
     const newNote = {
@@ -58,7 +44,7 @@ function App() {
 
       showToast('Note deleted (move to trash)', '#E72929');
       setNotes(updatedNotes);
-      setNoteTrash((prevTrash) => [...prevTrash, deletedNote]);
+      setNotesTrash((prevTrash) => [...prevTrash, deletedNote]);
     }
   };
 
@@ -78,7 +64,7 @@ function App() {
 
       showToast('Note archived ', '#713200');
       setNotes(updatedNotes);
-      setNoteArchive((prevArchive) => [...prevArchive, archivedNote]);
+      setNotesArchive((prevArchive) => [...prevArchive, archivedNote]);
     }
   };
 
@@ -89,8 +75,8 @@ function App() {
         <PagesContainer>
           <Routes>
             <Route path="/" exact element={<NotesPage onAddNote={addNote} notes={notes} onDeleteNote={deleteNote} onEditNote={editNote} onArchiveNote={archiveNote} />} />
-            <Route path="/trash" element={<TrashPage notes={notes} noteTrash={noteTrash} setNotes={setNotes} setNoteTrash={setNoteTrash} />} />
-            <Route path="/archive" element={<ArchivePage notes={notes} noteArchive={noteArchive} setNotes={setNotes} setNoteArchive={setNoteArchive} />} />
+            <Route path="/trash" element={<TrashPage notes={notes} notesTrash={notesTrash} setNotes={setNotes} setNotesTrash={setNotesTrash} />} />
+            <Route path="/archive" element={<ArchivePage notes={notes} notesArchive={notesArchive} setNotes={setNotes} setNotesArchive={setNotesArchive} />} />
           </Routes>
         </PagesContainer>
       </Container>
