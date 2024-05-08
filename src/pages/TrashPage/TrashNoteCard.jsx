@@ -2,7 +2,7 @@ import HTMLReactParser from 'html-react-parser';
 import { MdDeleteForever } from 'react-icons/md';
 import { FaArrowRotateRight } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
-import { truncatedText } from '../NotesPage/NotesCard';
+import { truncatedText } from '../../utils/truncatedText';
 
 const TrashNoteCard = ({ id, title, body, date, handleShowDeletePopUp, onRestoreNote }) => {
   return (
@@ -24,11 +24,11 @@ const TrashNoteCard = ({ id, title, body, date, handleShowDeletePopUp, onRestore
           </div>
 
           <div className="flex text-[15px] gap-2">
-            <motion.div id="delete-button" className="w-[40px] h-[40px] bg-yellow-200 leading-[40px] flex justify-center items-center rounded-md cursor-pointer hover:scale-105" onClick={handleShowDeletePopUp}>
+            <motion.div id="delete-button" className="w-[40px] h-[40px] bg-yellow-200 leading-[40px] flex justify-center items-center rounded-md cursor-pointer hover:scale-105" onClick={() => handleShowDeletePopUp(id)}>
               <MdDeleteForever />
             </motion.div>
 
-            <motion.div id="restore-button" className="w-[40px] h-[40px] bg-yellow-200 leading-[40px] flex justify-center items-center rounded-md cursor-pointer hover:scale-105" onClick={onRestoreNote}>
+            <motion.div id="restore-button" className="w-[40px] h-[40px] bg-yellow-200 leading-[40px] flex justify-center items-center rounded-md cursor-pointer hover:scale-105" onClick={() => onRestoreNote(id)}>
               <FaArrowRotateRight />
             </motion.div>
           </div>

@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import TrashNoteCard from './TrashNoteCard';
-import { showToast } from '../../App';
+import { showToast } from '../../utils/toast';
 
-const TrashPage = ({ notes, noteTrash, setNotes, setNoteTrash }) => {
+const TrashPage = ({ notes, notesTrash, setNotes, setNotesTrash }) => {
   const [selectedNote, setSelectedNote] = useState(null);
 
-  const handleShowDeletePopUp = (id) => setSelectedNote(noteTrash.find((note) => note.id === id));
+  const handleShowDeletePopUp = (id) => setSelectedNote(notesTrash.find((note) => note.id === id));
   const handleCloseDeletePopUp = () => setSelectedNote(null);
 
   const onDeleteNotePermanently = (id) => {
-    const updatedNoteTrash = noteTrash.filter((note) => note.id !== id);
-    setNoteTrash(updatedNoteTrash);
+    const updatedNoteTrash = notesTrash.filter((note) => note.id !== id);
+    setNotesTrash(updatedNoteTrash);
     handleCloseDeletePopUp();
 
     showToast('Note delete permanently', '#E72929');
   };
 
   const onRestoreNote = (id) => {
-    const restoredNote = noteTrash.find((note) => note.id === id);
+    const restoredNote = notesTrash.find((note) => note.id === id);
     if (restoredNote) {
-      const updatedNote = noteTrash.filter((note) => note.id !== id);
+      const updatedNote = notesTrash.filter((note) => note.id !== id);
       restoredNote.isTrash = false;
-      setNoteTrash(updatedNote);
+      setNotesTrash(updatedNote);
       setNotes([...notes, restoredNote]);
       showToast('Note restored successfully!', '#000');
     }
@@ -30,12 +30,12 @@ const TrashPage = ({ notes, noteTrash, setNotes, setNoteTrash }) => {
   return (
     <div className="relative py-3 w-full">
       <h1 className="Heading text-[35px] font-bold">Trash Note</h1>
-      {noteTrash.length === 0 ? (
+      {notesTrash.length === 0 ? (
         <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">Notes is Empty</div>
       ) : (
         <div className="relative w-full h-full my-[20px] grid grid-cols-3 gap-3 max-md:grid-cols-2 max-sm:grid-cols-1">
-          {noteTrash.map((note) => (
-            <TrashNoteCard key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} handleShowDeletePopUp={() => handleShowDeletePopUp(note.id)} onRestoreNote={() => onRestoreNote(note.id)} />
+          {notesTrash.map((note) => (
+            <TrashNoteCard key={note.id} id={note.id} title={note.title} body={note.body} date={note.date} handleShowDeletePopUp={handleShowDeletePopUp} onRestoreNote={onRestoreNote} />
           ))}
         </div>
       )}
