@@ -1,9 +1,9 @@
 import HTMLReactParser from 'html-react-parser';
-import { truncatedText } from '../NotesPage/NotesCard';
 import { motion } from 'framer-motion';
 import { FaArrowRotateRight } from 'react-icons/fa6';
+import { truncatedText } from '../../utils/truncatedText';
 
-const ArchiveNoteCard = ({ id, title, body, date }) => {
+const ArchiveNoteCard = ({ id, title, body, date, onRestoreNote }) => {
   return (
     <div id="trash-note-card" className="relative w-full max-w-full h-auto p-[20px] bg-white border-[2px] border-black rounded-md">
       <div className="flex justify-between items-center">
@@ -22,7 +22,7 @@ const ArchiveNoteCard = ({ id, title, body, date }) => {
         </div>
 
         <div className="flex text-[15px] gap-2">
-          <motion.div id="restore-button" className="w-[40px] h-[40px] bg-yellow-200 leading-[40px] flex justify-center items-center rounded-md cursor-pointer hover:scale-105">
+          <motion.div id="restore-button" className="w-[40px] h-[40px] bg-yellow-200 leading-[40px] flex justify-center items-center rounded-md cursor-pointer hover:scale-105" onClick={() => onRestoreNote(id)}>
             <FaArrowRotateRight />
           </motion.div>
         </div>
