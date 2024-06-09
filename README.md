@@ -23,30 +23,6 @@ Notes that are no longer needed can be moved to the trash. This feature helps yo
 - HTML React Parser ```npm i html-react-parser```
   
 
-## Usage
-
-To get started with the Notes Web Application:
-
-##### 1. Clone this repository to your local machine.
-```bash
-git clone https://github.com/VioletKawaiiiii/notes-web.git
-```
-
-##### 2. Navigate to the project directory.
-```bash 
-cd notes-web
-```
-
-##### 3. Install dependencies.
-```bash
-npm i .
-```
-
-##### 4. Start the application.
-```bash
-npm run dev
-```
-
 ### © Created by Fikryyye 2024. All Right Reserved.
 
 
