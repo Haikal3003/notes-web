@@ -7,7 +7,7 @@ This web application is designed to help you organize your notes efficiently. It
 - Tailwind CSS
 - Vite
 
-### © Created by Fikryyye 2024. All Right Reserved.
+### © Created by Fikryyy 2024. All Right Reserved.
 
 
 
